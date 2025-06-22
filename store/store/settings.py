@@ -1,3 +1,4 @@
+import os
 """
 Django settings for store project.
 
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'store.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shop_db', 
+        'NAME': 'shop', 
         'USER': 'postgres', 
         'PASSWORD': 'admin', 
         'HOST': 'localhost', 
@@ -127,3 +128,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,4 +1,11 @@
 {% extends 'base.html'%}
 {% block content%}
-    <h1>Курлык-курлык</h1>
+<ul>
+    {% for gun in goods %}
+        <li><p>{{ gun.name }}</p></li>
+
+        <p><a href="{{ gun.get_absolute_url }}">More</a></p>
+
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -4,6 +4,6 @@ from .views import get_all_the_goods, get_category, get_the_good
 
 urlpatterns = [
     path('', get_all_the_goods, name='main_page'),
-    path('category/<slug:slug>/', get_category, name='category'),
-    path('<slug:slug>/', get_the_good, name='firearm'),
+    path('category/<slug:cat_slug>/', get_category, name='category'),
+    path('firearm/<slug:a_good_slug>/', get_the_good, name='firearm'),
 ]

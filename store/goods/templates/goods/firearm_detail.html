@@ -1,5 +1,10 @@
 {% extends 'base.html'%}
-{% block content %} 
-    <h1>Валына</h1>
-    <p>{{ text }}</p>
+{% block content %}
+    <h1>{{ good.name }}</h1>
+    <img src="{{ good.image.url }}" alt="{{ good.name }}"" class="weapon-image">
+    <p>{{ good.desctiption }}</p>
+    <p>Цена: {{ good.price }} USD.</p>
+    <p>In stock: {{ good.stock }}</p>
 {% endblock %}
+
+
