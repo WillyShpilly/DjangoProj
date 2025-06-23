@@ -17,9 +17,14 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("category", kwargs={'cat_slug': self.slug})
+    
+
 class AvailableManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_available=1)
+
 
 class Goods(models.Model):
     class Status(models.IntegerChoices):
