@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, verbose_name="Категория")
     slug = models.SlugField(unique=True, blank=True, db_index=True)
 
     def save(self, *args, **kwargs):
@@ -20,6 +20,10 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("category", kwargs={'cat_slug': self.slug})
     
+    class Meta:
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+
 
 class AvailableManager(models.Manager):
     def get_queryset(self):
@@ -32,14 +36,14 @@ class Goods(models.Model):
         AVAILABLE = 1, "Available"  
 
 
-    name = models.CharField(max_length=100)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
-    description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField(blank=True)
-    image = models.ImageField(upload_to='firearms/', blank=True)
-    slug = models.SlugField(unique=True, blank=True, db_index=True)
-    is_available = models.IntegerField(choices=Status, default=Status.AVAILABLE)  
+    name = models.CharField(max_length=100, verbose_name="Валына")
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="Категория")
+    description = models.TextField(blank=True, verbose_name="Описание")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
+    stock = models.PositiveIntegerField(blank=True, verbose_name="На складе")
+    image = models.ImageField(upload_to='firearms/', blank=True, verbose_name="Изображение")
+    slug = models.SlugField(unique=True, blank=True, db_index=True, verbose_name="slug")
+    is_available = models.IntegerField(choices=Status, default=Status.AVAILABLE, verbose_name="Наличие")  
 
     objects = models.Manager()
     available = AvailableManager()
@@ -58,4 +62,7 @@ class Goods(models.Model):
         return reverse('firearm', kwargs={'a_good_slug': self.slug})
 
 
+    class Meta:
+        verbose_name = "Товар"
+        verbose_name_plural = "Товары"
     
